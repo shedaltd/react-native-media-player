@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "react-native": "^0.4.4"
-  }
+  },
   "main": "Media.ios.js",
   "author": "Mike Ebinum <mike@seeddigital.co> (https://github.com/mebinum)",
   "peerDependencies": {

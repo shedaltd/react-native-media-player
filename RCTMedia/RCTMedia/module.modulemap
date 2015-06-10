@@ -1,0 +1,26 @@
+//module React [system] {
+    module Headers {
+        header "Headers.h"
+        export *
+    }
+    
+    module RCTBridge {
+       header "RCTBridge.h"
+       export *
+    }
+
+    module RCTBridgeModule {
+        header "RCTBridgeModule.h"
+        export *
+    }
+
+    module RCTConvert {
+        header "RCTConvert.h"
+        export *
+    }
+
+    module RCTEventDispatcher {
+        header "RCTEventDispatcher.h"
+        export *
+    }
+//}

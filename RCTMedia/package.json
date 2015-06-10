@@ -1,0 +1,31 @@
+{
+  "name": "react-native-media-player",
+  "version": "0.0.2",
+  "description": "React native media player",
+  "main": "Media.ios.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seedtech/react-native-media-player"
+  },
+  "author": "Mike Ebinum <mike@seeddigital.co>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seedtech/react-native-media-player/issues"
+  },
+  "files": [
+    "AudioPlayerManager.m",
+    "AudioPlayerManager.swift",
+    "README.md",
+    "Media.ios.js"
+  ],
+  "homepage": "https://github.com/seedtech/react-native-media-player",
+  "dependencies": {
+    "react-native": "^0.4.4"
+  },
+  "peerDependencies": {
+    "react-native": "^0.4.4"
+  }
+}

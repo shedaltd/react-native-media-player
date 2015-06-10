@@ -24,11 +24,11 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
   var bridge:RCTBridge?
   
   func constantsToExport() -> [NSObject : AnyObject] {
-    return ["Events" :[
+    return ["Events" :
       [AudioPlayerEventProgress : AudioPlayerEventProgress],
       [AudioPlayerEventFinished : AudioPlayerEventFinished],
       [AudioPlayerError : AudioPlayerError],
-      [AudioPlayerStarted:AudioPlayerStarted]]
+      [AudioPlayerStarted:AudioPlayerStarted]
     ]
   }
 

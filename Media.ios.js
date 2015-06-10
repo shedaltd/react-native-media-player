@@ -2,7 +2,8 @@
 
 var React = require('react-native');
 
-var AudioPlayerManager = require('NativeModules').AudioPlayerManager;
+var NativeModules  = require('NativeModules');
+var AudioPlayerManager = NativeModules.AudioPlayerManager;
 
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 
@@ -11,7 +12,7 @@ var AudioPlayer = {
     AudioPlayerManager.play(path,false);
   },
   pause: function() {
-    AudioPlayerManager.pause();    
+    AudioPlayerManager.pause();
   },
   stop: function() {
     AudioPlayerManager.stop();
@@ -21,4 +22,4 @@ var AudioPlayer = {
   }
 };
 
-module.exports = {AudioPlayer};
+module.exports = AudioPlayer;
