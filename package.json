@@ -1,8 +1,8 @@
 {
   "name": "react-native-media-player",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "React Native library for simple Media playing. Wraps AVPlayer.",
-  "main": "Media.ios.js",
+  "main": "RCTMedia/Media.ios.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
