@@ -16,10 +16,10 @@
     "url": "https://github.com/seedtech/react-native-media-player/issues"
   },
   "files": [
-    "AudioPlayerManager.m",
-    "AudioPlayerManager.swift",
-    "README.md",
-    "Media.ios.js"
+    "RCTMedia/AudioPlayerManager.m",
+    "RCTMedia/AudioPlayerManager.swift",
+    "RCTMedia/README.md",
+    "RCTMedia/Media.ios.js"
   ],
   "homepage": "https://github.com/seedtech/react-native-media-player",
   "dependencies": {
