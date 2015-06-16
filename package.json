@@ -27,5 +27,6 @@
   },
   "peerDependencies": {
     "react-native": "^0.4.4"
-  }
+  },
+  "private": "true"
 }
