@@ -1,6 +1,6 @@
 {
   "name": "react-native-media-player",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "React Native library for simple Media playing. Wraps AVPlayer.",
   "main": "Media.ios.js",
   "scripts": {
@@ -19,7 +19,8 @@
     "RCTMedia/AudioPlayerManager.m",
     "RCTMedia/AudioPlayerManager.swift",
     "RCTMedia/README.md",
-    "RCTMedia/Media.ios.js"
+    "RCTMedia/Media.ios.js",
+    "RCTMedia.xcodeproj"
   ],
   "homepage": "https://github.com/seedtech/react-native-media-player",
   "dependencies": {
