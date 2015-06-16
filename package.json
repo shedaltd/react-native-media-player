@@ -20,7 +20,7 @@
     "RCTMedia/AudioPlayerManager.swift",
     "RCTMedia/README.md",
     "RCTMedia/Media.ios.js",
-    "RCTMedia.xcodeproj"
+    "RCTMedia/RCTMedia.xcodeproj"
   ],
   "homepage": "https://github.com/seedtech/react-native-media-player",
   "dependencies": {
