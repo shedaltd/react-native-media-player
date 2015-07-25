@@ -23,10 +23,10 @@
   ],
   "homepage": "https://github.com/seedtech/react-native-media-player",
   "dependencies": {
-    "react-native": "^0.4.4"
+    "react-native": "^0.8"
   },
   "peerDependencies": {
-    "react-native": "^0.4.4"
+    "react-native": "^0.8"
   },
   "private": "true"
 }
