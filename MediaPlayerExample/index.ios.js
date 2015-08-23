@@ -32,7 +32,15 @@ var MediaPlayerExample = React.createClass({
         console.log(error);
       };
 
-    AudioPlayer.onPlayerStarted = () => {console.log('started playing yeah')};
+    AudioPlayer.onPlayerLoading = (data) => {
+      console.log('I\'m loading yeah ' + JSON.stringify(data));
+    };
+
+    AudioPlayer.onPlayerLoaded = (data) => {
+      console.log('I\'ve finished loading cool bro ' + JSON.stringify(data));
+    };
+
+    AudioPlayer.onPlayerStarted = () => {console.log('started playing yeah'); };
 
     AudioPlayer.onPlayerProgress = (data) => {
     //  console.log('progress current time ' + data.currentTime)
@@ -42,7 +50,11 @@ var MediaPlayerExample = React.createClass({
     };
 
     AudioPlayer.onPlayerFinished = (data) => {
-      console.log('finsished? ' + data.finished)
+      console.log('finsished? ' + JSON.stringify(data));
+    };
+
+    AudioPlayer.onAllPlayStopped = (data) => {
+      console.log('finshed playing all tracks ' + JSON.stringify(data));
     };
     AudioPlayer.init();
   },

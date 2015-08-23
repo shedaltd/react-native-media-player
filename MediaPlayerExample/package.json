@@ -7,6 +7,6 @@
   },
   "dependencies": {
     "react-native": "^0.4.4",
-    "react-native-media-player": "file:../RCTMedia/"
+    "react-native-media-player": "file:../"
   }
 }

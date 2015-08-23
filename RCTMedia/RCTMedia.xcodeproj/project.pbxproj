@@ -16,6 +16,8 @@
 		18682A711B22B85200FCE630 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18682A701B22B85200FCE630 /* libReact.a */; };
 		18682A7C1B252F9A00FCE630 /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18682A7A1B252F9A00FCE630 /* AudioPlayerManager.swift */; };
 		18682A7D1B252F9A00FCE630 /* AudioPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 18682A7B1B252F9A00FCE630 /* AudioPlayerManager.m */; };
+		188B9A081B4CBF140010C87C /* AudioPlayerManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188B9A071B4CBF140010C87C /* AudioPlayerManagerTests.swift */; };
+		188B9A0A1B4CBFC80010C87C /* AudioPlayerManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 188B9A091B4CBFC80010C87C /* AudioPlayerManagerTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,9 @@
 		18682A701B22B85200FCE630 /* libReact.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libReact.a; path = "../MediaPlayerExample/node_modules/react-native/React/build/Debug-iphoneos/libReact.a"; sourceTree = "<group>"; };
 		18682A7A1B252F9A00FCE630 /* AudioPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
 		18682A7B1B252F9A00FCE630 /* AudioPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayerManager.m; sourceTree = "<group>"; };
+		188B9A061B4CBF130010C87C /* RCTMediaTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RCTMediaTests-Bridging-Header.h"; sourceTree = "<group>"; };
+		188B9A071B4CBF140010C87C /* AudioPlayerManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerManagerTests.swift; sourceTree = "<group>"; };
+		188B9A091B4CBFC80010C87C /* AudioPlayerManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayerManagerTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,8 +114,11 @@
 		18682A431B217EC900FCE630 /* RCTMediaTests */ = {
 			isa = PBXGroup;
 			children = (
+				188B9A071B4CBF140010C87C /* AudioPlayerManagerTests.swift */,
 				18682A461B217ECA00FCE630 /* RCTMediaTests.m */,
 				18682A441B217ECA00FCE630 /* Supporting Files */,
+				188B9A061B4CBF130010C87C /* RCTMediaTests-Bridging-Header.h */,
+				188B9A091B4CBFC80010C87C /* AudioPlayerManagerTests.m */,
 			);
 			path = RCTMediaTests;
 			sourceTree = "<group>";
@@ -243,6 +251,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				18682A471B217ECA00FCE630 /* RCTMediaTests.m in Sources */,
+				188B9A081B4CBF140010C87C /* AudioPlayerManagerTests.swift in Sources */,
+				188B9A0A1B4CBFC80010C87C /* AudioPlayerManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +368,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/node_modules/react-native/React/**",
+					"/Users/BELLARKS/Projects/iluku/local_modules/react-native-media-player/node_modules/react-native/React/**",
 				);
 				INFOPLIST_FILE = RCTMedia/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -366,11 +376,12 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/BELLARKS/Projects/ReactExamples/react-native-media-player/MediaPlayerExample/node_modules/react-native/React/build/Debug-iphoneos",
+					"/Users/BELLARKS/Projects/iluku/local_modules/react-native-media-player/node_modules/react-native/React/**",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/RCTMedia $(SRCROOT)/node_modules/react-native/React/**";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/ /Users/BELLARKS/Projects/iluku/local_modules/react-native-media-player/node_modules/react-native/React/**";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -388,7 +399,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SRCROOT)/node_modules/react-native/React/**",
+					"/Users/BELLARKS/Projects/iluku/local_modules/react-native-media-player/node_modules/react-native/React/**",
 				);
 				INFOPLIST_FILE = RCTMedia/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -396,17 +407,19 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/BELLARKS/Projects/ReactExamples/react-native-media-player/MediaPlayerExample/node_modules/react-native/React/build/Debug-iphoneos",
+					"/Users/BELLARKS/Projects/iluku/local_modules/react-native-media-player/node_modules/react-native/React/**",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/RCTMedia $(SRCROOT)/node_modules/react-native/React/**";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/ /Users/BELLARKS/Projects/iluku/local_modules/react-native-media-player/node_modules/react-native/React/**";
 			};
 			name = Release;
 		};
 		18682A4E1B217ECA00FCE630 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -418,12 +431,15 @@
 				INFOPLIST_FILE = RCTMediaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RCTMediaTests/RCTMediaTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		18682A4F1B217ECA00FCE630 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -431,6 +447,7 @@
 				INFOPLIST_FILE = RCTMediaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RCTMediaTests/RCTMediaTests-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -453,6 +470,7 @@
 				18682A4C1B217ECA00FCE630 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18682A4D1B217ECA00FCE630 /* Build configuration list for PBXNativeTarget "RCTMediaTests" */ = {
 			isa = XCConfigurationList;
@@ -461,6 +479,7 @@
 				18682A4F1B217ECA00FCE630 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
