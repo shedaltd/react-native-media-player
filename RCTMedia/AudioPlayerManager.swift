@@ -38,14 +38,14 @@ struct PlayerMeta {
     let trackId, path:String
     let playerId: Int
     let loop: Bool
-    
+
     init(trackId: String, path: String, playerId: Int, loop:Bool = false) {
         self.trackId = trackId
         self.path = path
         self.playerId = playerId
         self.loop = loop
     }
-    
+
     func asDictionary () -> NSDictionary {
         return ["playerId" : playerId, "trackId" : trackId, "path" : path]
     }
@@ -135,6 +135,9 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
             player.pause()
         }
         player.currentItem.seekToTime(kCMTimeZero)
+        player.currentItem.addObserver(self, forKeyPath: "status", options:nil, context: &self.AVPlayerItemContext)
+        player.addObserver(self, forKeyPath:"status",options:nil, context: &self.AVPlayerContext)
+        
         player.play()
         NSLog("Started playing player for path \(path)")
 
@@ -226,7 +229,7 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
         let player = AVPlayer(playerItem:item)
         let playerId = ObjectIdentifier(player).hashValue
         let playerMeta = PlayerMeta(trackId: trackId, path: path, playerId: playerId, loop: loop)
-        
+
         if let anError = player.error {
             dispatchAnError(anError, bodyMessage: playerMeta.asDictionary())
         } else {
@@ -238,7 +241,7 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
                 selector: "playerItemDidReachEnd:",
                 name: AVPlayerItemDidPlayToEndTimeNotification,
                 object: player.currentItem)
-          
+
            //set a listener for when the player ends
            _notificationCenter.addObserver(self,
              selector: "handlePlayerEnd:",
@@ -250,7 +253,7 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
             player.addObserver(self, forKeyPath:"status",options:nil, context: &AVPlayerContext)
 
             player.actionAtItemEnd = AVPlayerActionAtItemEnd.None
-          
+
             self.dispatchEvent(self.AudioPlayerLoading, body: playerMeta.asDictionary())
         }
         return (trackId, player, playerMeta)
@@ -285,7 +288,7 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
             case ("status", &AVPlayerItemContext) :
                 if let playerItem = object as? AVPlayerItem,
                     let (_,player,playerMeta) = self.getPlayerMeta(playerItem.asset) {
- 
+
                     switch playerItem.status {
                         case AVPlayerItemStatus.ReadyToPlay:
                             NSLog("AVPlayerItemStatus ReadyToPlay")
@@ -324,7 +327,7 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
             self._progressUpdateTimers.removeAtIndex(index)
         }
     }
-  
+
 
     func sendProgressUpdate(playerMeta: NSDictionary) {
         //["playerId" : playerId, "trackId" : trackId, "path" : path]
@@ -360,7 +363,7 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
             }
         }
     }
-  
+
   /*!
   @method		stopPlaying:
   @abstract		Stops a player if it's currently playing a track and dispatches an event to
@@ -375,52 +378,52 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
     if aPlayer.isPlaying() {
       aPlayer.pause()
       wasPaused = true
-      
+
         aPlayer.currentItem.removeObserver(self, forKeyPath:"status", context: &AVPlayerItemContext)
         aPlayer.removeObserver(self, forKeyPath: "status", context: &AVPlayerContext)
-        
+
         //removed any timedobservers for the player
         removeTimedObserverForPlayer(aPlayer,trackId: playerMeta.trackId)
-        
+
     }
-    
+
     //check if there are anymore tracks playting
     let anyTrackPlaying = self.isPlayingAnyTracks()
-    
-    
+
+
     //send event over bridge based on if it was a pause or not
     self.dispatchEvent(pause ? AudioPlayerEventPaused: AudioPlayerEventFinished, body: ["trackId" : playerMeta.trackId , "path" : playerMeta.path, "isAnythingPlaying": anyTrackPlaying])
-    
+
     //if no more tracks are playing fire AudioPlayerFullyStopped event
     if !anyTrackPlaying {
       self.dispatchEvent(AudioPlayerFullyStopped, body: ["isAnythingPlaying": anyTrackPlaying])
     }
-    
 
-    
+
+
     return wasPaused
   }
 
     func playerItemDidReachEnd(notification: NSNotification) {
         var message:NSDictionary = [:]
-        
+
         if let asset = (notification.object as? AVPlayerItem)?.asset {
             message = self.getPlayerMetaAsDictionary(asset)
         }
-        
+
         self.dispatchEvent(self.AudioPlayerEventFinished, body: message)
     }
-  
+
   func handlePlayerEnd(notification: NSNotification) {
     if let asset = (notification.object as? AVPlayerItem)?.asset,
         let (_,player,meta:PlayerMeta) = self.getPlayerMeta(asset) {
-            
+
         //determine selector to fire when player reaches end of track
         //restart player from beginning if looping
         if meta.loop {
           self.restartPlayerFromBegining(player.currentItem)
         } else {
-            
+
           self.stopPlaying(player, playerMeta: meta, pause: false)
         }
       //let selectorToFireOnEnd = loop ? "restartPlayerFromBegining" : "stopTimedObserver"
@@ -431,7 +434,7 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
         NSLog("\restarting track")
         self.dispatchEvent(self.AudioPlayerStarted, body: self.getPlayerMetaAsDictionary(avPlayerItem.asset))
     }
-  
+
   func removeTimedObserverForPlayer(player: AVPlayer,trackId: String) {
       if let observer: AnyObject = self.playerObservers[trackId],
         let index = self.playerObservers.indexForKey(trackId) {
@@ -457,7 +460,7 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
         }
         return meta
     }
-    
+
     func getPlayerMeta(playerAsset: AVAsset) -> PlayerMeta? {
         var meta: PlayerMeta?
         if let (_,_,playerMeta) = getPlayerMeta(playerAsset) {
@@ -465,27 +468,27 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
         }
         return meta
     }
-    
+
     func getPlayerMeta(playerAsset: AVAsset) -> (String,AVPlayer,PlayerMeta)? {
-        
+
         var meta: (String,AVPlayer,PlayerMeta)?
-        
+
         if let pathUrl = (playerAsset as? AVURLAsset)?.URL {
-            
+
             let path = pathUrl.absoluteString!
             let trackId = path.toBase64String()
-            
+
             return getPlayerDetails(trackId)
-             
+
         }
-        
+
         return meta
     }
-    
+
     func getPlayerDetails(trackId:String) -> (String,AVPlayer,PlayerMeta)? {
         return ((_audioPlayerList.filter{$0.0 == trackId}).first)
     }
-    
+
   // Delegates
   func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
     NSLog(flag ? "FINISHED OK" : "FINISH ERROR");
@@ -550,10 +553,10 @@ class AudioPlayerManager: NSObject, AVAudioPlayerDelegate, RCTBridgeModule {
             ),
             dispatch_get_main_queue(), closure)
     }
-    
+
     deinit {
         _notificationCenter.removeObserver(self)
-        
+
         for (trackId,player, meta) in self._audioPlayerList {
             player.pause()
             player.currentItem.removeObserver(self, forKeyPath:"status", context: &AVPlayerItemContext)
